@@ -17,11 +17,24 @@ public class Car {
     private String owner;
     @ColumnInfo
     private boolean done;
+    @ColumnInfo
+    private double latitude;
+    @ColumnInfo
+    private double longitude;
 
+    public Car(String name, String description, String owner, boolean b, double latitude, double longitude) {
+        this.name = name;
+        this.description = description;
+        this.owner = owner;
+        done = false;
+        this.latitude = latitude;
+        this.longitude= longitude;
+
+    }
     public Car(String name, String description, String owner, boolean b) {
         this.name = name;
-        this.description = this.description;
-        this.owner = this.owner;
+        this.description = description;
+        this.owner = owner;
         done = false;
     }
 
@@ -59,6 +72,22 @@ public class Car {
 
     public String getOwner() {
         return owner;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     //al montar mi propio adapter para mostrar mis datos yo no me hace falta este método para mostrar las tareas.

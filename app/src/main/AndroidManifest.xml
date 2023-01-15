@@ -27,6 +27,8 @@
         </activity>
         <activity android:name=".RegisterCarActivity"></activity>
         <activity android:name=".ViewCarActivity"></activity>
+        <activity android:name=".RegCarActActivity"></activity>
+        <activity android:name=".MapsActivity"></activity>
     </application>
 
 </manifest>

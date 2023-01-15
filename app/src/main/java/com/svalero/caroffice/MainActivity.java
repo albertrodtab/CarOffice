@@ -119,11 +119,14 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, RegisterCarActivity.class);
             startActivity(intent);
             return true;
+        }if(item.getItemId() == R.id.view_map) {
+            //Con Intent de digo donde estoy y a donde quiero ir
+            Intent intent = new Intent(this, MapsActivity.class);
+            startActivity(intent);
+            return true;
         }
         return false;
     }
-
-
 
 
 }

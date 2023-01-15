@@ -55,7 +55,7 @@
 
             <Button
                 android:id="@+id/do_task_button"
-                android:layout_width="wrap_content"
+                android:layout_width="69dp"
                 android:layout_height="wrap_content"
                 android:text="Hacer" />
 
@@ -67,9 +67,16 @@
 
             <Button
                 android:id="@+id/delete_task_button"
-                android:layout_width="wrap_content"
+                android:layout_width="95dp"
                 android:layout_height="wrap_content"
                 android:text="Eliminar" />
+
+            <Button
+                android:id="@+id/buttonUpdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="MODIFICAR" />
         </LinearLayout>
 
     </LinearLayout>

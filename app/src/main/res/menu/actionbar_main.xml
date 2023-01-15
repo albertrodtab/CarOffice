@@ -7,4 +7,9 @@
         android:icon="@android:drawable/ic_menu_add"
         android:title="Registrar Tarea"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/view_map"
+        android:icon="@android:drawable/ic_menu_mapmode"
+        android:title="map"
+        app:showAsAction="always" />
 </menu>
