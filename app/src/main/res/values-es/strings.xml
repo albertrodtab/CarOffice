@@ -1,4 +1,7 @@
+
 <resources>
     <string name="app_name">caroffice</string>
-    <string name="nameEditText">Name</string>
+    <string name="nameEditText">nombre</string>
+
+
 </resources>

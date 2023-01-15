@@ -22,6 +22,9 @@ public interface TaskDao {
     @Query("DELETE FROM Car WHERE name = :name")
     void deleteByName(String name);
 
+    @Query("UPDATE Car SET description = :description, owner = :owner WHERE name = :name ")
+    void update(String name, String description, String owner);
+
     @Insert
     void insert(Car car);
 

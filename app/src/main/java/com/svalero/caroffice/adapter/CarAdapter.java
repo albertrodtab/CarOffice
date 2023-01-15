@@ -1,5 +1,6 @@
 package com.svalero.caroffice.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import com.svalero.caroffice.R;
+import com.svalero.caroffice.RegCarActActivity;
+import com.svalero.caroffice.RegisterCarActivity;
 import com.svalero.caroffice.ViewCarActivity;
 import com.svalero.caroffice.db.AppDatabase;
 import com.svalero.caroffice.domain.Car;
@@ -65,6 +68,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.TaskHolder>{
         public Button seeDetailsButton;
         public Button deleteTaskButton;
         public View parentView;
+        public Button modifyRareaButton;
 
         public TaskHolder(View view) {
             super(view);
@@ -77,6 +81,10 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.TaskHolder>{
             seeDetailsButton = view.findViewById(R.id.see_details_button);
             deleteTaskButton = view.findViewById(R.id.delete_task_button);
 
+            modifyRareaButton = view.findViewById(R.id.buttonUpdate);
+
+
+
             //Programar boton ver detalles de la tarea
             doTaskButton.setOnClickListener(v -> doTask(getAdapterPosition()));
 
@@ -85,6 +93,8 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.TaskHolder>{
 
             //click on button (remove task from de list).
             deleteTaskButton.setOnClickListener(v -> deleteTask(getAdapterPosition()));
+
+            modifyRareaButton.setOnClickListener(v-> modifyTarea(getAdapterPosition()));
         }
 
         private void doTask(int position){
@@ -110,10 +120,29 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.TaskHolder>{
         }
 
         private void deleteTask(int position){
-            carList.remove(position);
-            notifyItemRemoved(position);
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setMessage("are_you_sure_msg")
+                    .setTitle("Delete element")
+                    .setPositiveButton("Yes", (dialog, id) -> {
+                        final AppDatabase db = Room.databaseBuilder(context, AppDatabase.class, "tareas")
+                                .allowMainThreadQueries().build();
+                        Car car = carList.get(position);
+                        db.taskDao().delete(car);
 
+                        carList.remove(position);
+                        notifyItemRemoved(position);
+                    })
+                    .setNegativeButton("no", (dialog, id) -> dialog.dismiss());
+            AlertDialog dialog = builder.create();
+            dialog.show();
             //Falta hacer que borre el dato de la base de datos.
+        }
+        private void modifyTarea(int position) {
+            Car car = carList.get(position);
+
+            Intent intent = new Intent(context, RegCarActActivity.class);
+            intent.putExtra("name", car.getName());
+            context.startActivity(intent);
         }
 
     }
